@@ -12,6 +12,7 @@ body{
 
   :root {
     --blue: #4436FD;
+    --gray:#6E6B7B;
 
   }
   
@@ -34,4 +35,10 @@ body{
   }
   .c-bg-blue{
     background: var(--blue);
+  }
+  .c-text-blue{
+    color: var(--blue);
+  }
+  .c-text-gray{
+    color: var(--gray);
   }

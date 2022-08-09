@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col sidebar justify-between" :style="[deployed ? 'max-width: 260px;' : 'max-width: 68px;']">
+  <div class="flex flex-col sidebar justify-between py-3" :style="[deployed ? 'max-width: 260px;' : 'max-width: 68px;']">
       <div class="flex flex-col items-center ">
       <!-- first block -->
         <div
@@ -9,7 +9,7 @@
         :key="index"
         >
           <div class="flex justify-center">
-            <img   :src="`src/assets/images/sidebar/${item.icon}`">
+            <img   :src="`src/assets/images/${item.icon}`">
           </div>
           <div 
           v-if="deployed" 
@@ -31,7 +31,7 @@
                 {{item.text}}
               </div>
               <div>
-                <img :src="`src/assets/images/sidebar/${item.icon}`">
+                <img :src="`src/assets/images/${item.icon}`">
               </div> 
             </template>
             <template v-else>
@@ -49,7 +49,7 @@
         :key="index"
         >
           <div>
-            <img   :src="`src/assets/images/sidebar/${third.icon}`">
+            <img   :src="`src/assets/images/${third.icon}`">
           </div>
           <div
           v-if="deployed" 
@@ -79,7 +79,7 @@
           :key="index"
           >
           <div>
-            <img   :src="`src/assets/images/sidebar/${item.icon}`">
+            <img   :src="`src/assets/images/${item.icon}`">
           </div>
           <div 
           v-if="deployed" 
@@ -131,13 +131,13 @@ export default {
 
 <style>
 .sidebar{
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-  height: calc(100vh - 63px);
   background:#FFFFFF;
+  height: calc(100vh - 63px);
   overflow-y: auto;
-  transition: all 0.1s
+  position: absolute;
+  transition: all 0.1s;
+  width: 100%;
+  z-index: 99;
 }
 
 .sidebar::-webkit-scrollbar{
@@ -151,30 +151,30 @@ export default {
 } 
 .sidebar__item{
   background: #FFFFFF;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  max-width: 230px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
   cursor:pointer;
+  max-width: 230px;
 }
 .sidebar__static{
   background: #FFFFFF;
   max-width: 230px;
 }
 .sidebar__item__static{
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 18px;
-  letter-spacing: 0px;
-  text-align: left;
   color: #BABFC7;
   cursor:pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  line-height: 18px;
+  text-align: left;
 
 }
 .sidebar__item__text{
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 24px;
   color: #6E6B7B;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 </style>
