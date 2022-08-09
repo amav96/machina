@@ -3,13 +3,16 @@
       <div class="flex flex-col items-center ">
       <!-- first block -->
         <div
-        class="flex flex-row sidebar__item m-1 py-2 px-2  items-center"
-        :class="[deployed ? 'w-full' : '']"
+        :class="[deployed ? 'w-full' : '','flex flex-row sidebar__item m-1 py-2 px-2  items-center',
+        `${theme}-sidebar-item`]"
         v-for="(item,index) in navbar.firstBlock"
         :key="index"
         >
           <div class="flex justify-center">
-            <img   :src="`src/assets/images/${item.icon}`">
+          <Media
+          :icon="item.icon"
+          :img="item.img"
+          />
           </div>
           <div 
           v-if="deployed" 
@@ -18,7 +21,6 @@
           </div>
         </div>
       <!-- second block -->
-        
           <div 
           class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center"
           v-for="(item,index) in navbar.secondBlock"
@@ -31,7 +33,10 @@
                 {{item.text}}
               </div>
               <div>
-                <img :src="`src/assets/images/${item.icon}`">
+              <Media
+              :icon="item.icon"
+              :img="item.img"
+              />
               </div> 
             </template>
             <template v-else>
@@ -43,18 +48,21 @@
        
       <!-- third block -->
         <div
-        class="flex flex-row sidebar__item m-1 py-2 px-2 items-center"
-        :class="[deployed ? 'w-full' : '']"
-        v-for="(third,index) in navbar.thirdBlock"
+        :class="[deployed ? 'w-full' : '','flex flex-row sidebar__item m-1 py-2 px-2 items-center',
+        `${theme}-sidebar-item`]"
+        v-for="(item,index) in navbar.thirdBlock"
         :key="index"
         >
           <div>
-            <img   :src="`src/assets/images/${third.icon}`">
+            <Media
+            :icon="item.icon"
+            :img="item.img"
+            />
           </div>
           <div
           v-if="deployed" 
           class="mx-2 sidebar__item__text">
-            {{third.text}}
+            {{item.text}}
           </div>
         </div>
       </div>
@@ -62,7 +70,6 @@
       <div class="flex flex-col items-center">
        <!-- fourth block -->
         <div 
-       
         class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center">
           <div 
           class="sidebar__item__static "
@@ -73,13 +80,17 @@
         </div>
          <!-- fifth block -->
         <div
-          class="flex flex-row sidebar__item m-1 py-2 px-2  items-center"
-          :class="[deployed ? 'w-full' : '']"
+          :class="[deployed ? 'w-full' : '','flex flex-row sidebar__item m-1 py-2 px-2  items-center',
+          `${theme}-sidebar-item`
+          ]"
           v-for="(item,index) in navbar.fifthBlock"
           :key="index"
           >
           <div>
-            <img   :src="`src/assets/images/${item.icon}`">
+            <Media
+            :icon="item.icon"
+            :img="item.img"
+            />
           </div>
           <div 
           v-if="deployed" 
@@ -92,7 +103,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import Media from './Media.vue'
 export default {
+  components:{Media},
+  computed: {
+        ...mapState(['theme']),
+  },
   props:{
     deployed: {
       type: Boolean,
@@ -103,25 +120,25 @@ export default {
     return {
       navbar: {
         firstBlock: [
-          {icon: 'home.svg', text: 'Dashboard'},
-          {icon: 'calendar.svg', text: 'Calendar'},
+          {icon: 'home', text: 'Dashboard'},
+          {icon: 'calendar-alt', text: 'Calendar'},
         ],
         secondBlock: [
-          {icon: 'list_alt.svg', text: 'REPORTS'},
+          {icon: 'receipt', text: 'REPORTS'},
         ],
         thirdBlock: [
-          {icon: 'more.svg', text: 'Machina Hi'},
-          {icon: 'up.svg', text: 'Heads Up'},
-          {icon: 'sync.svg', text: 'Stay Around'},
-          {icon: 'graf.svg', text: 'Analytics'},
-          {icon: 'graf.svg', text: 'My Reports'},
+          {icon: 'plus-square',  text: 'Machina Hi'},
+          {icon: 'arrow-alt-circle-up', text: 'Heads Up'},
+          {icon: 'sync', text: 'Stay Around'},
+          {icon: 'chart-bar', text: 'Analytics'},
+          {icon: 'chart-line', text: 'My Reports'},
         ],
         fourthBlock: {text: 'Settings'},
         fifthBlock: [
-          {icon: 'user.svg', text: 'Manage Users'},
-          {icon: 'down.svg', text: 'Cloud Connect'},
-          {icon: 'x.svg', text: 'Api Manager'},
-          {icon: 'question.svg', text: 'Help/Support'},
+          {icon: 'user', text: 'Manage Users'},
+          {icon: 'cloud-download', text: 'Cloud Connect'},
+          {icon: 'arrows-alt', text: 'Api Manager'},
+          {icon: 'question-circle', text: 'Help/Support'},
         ],
       }
     }
@@ -130,6 +147,8 @@ export default {
 </script>
 
 <style>
+
+
 .sidebar{
   background:#FFFFFF;
   height: calc(100vh - 63px);
@@ -171,9 +190,7 @@ export default {
 
 }
 .sidebar__item__text{
-  color: #6E6B7B;
   font-size: 15px;
-  font-weight: 500;
   line-height: 24px;
 }
 

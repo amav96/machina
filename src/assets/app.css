@@ -12,7 +12,9 @@ body{
 
   :root {
     --blue: #4436FD;
+    --blue-dark:#2C354D;
     --gray:#6E6B7B;
+    --yellow:#F1BC01;
 
   }
   
@@ -21,9 +23,7 @@ body{
    
   }
   
-  body {
-    background: rgba(245, 243, 243, 0.795);
-  }
+ 
 
   .fs{ /*fullSize*/
     width: 100%;
@@ -36,9 +36,46 @@ body{
   .c-bg-blue{
     background: var(--blue);
   }
+
   .c-text-blue{
     color: var(--blue);
   }
   .c-text-gray{
     color: var(--gray);
   }
+
+
+  .light-mode-bg-app{
+    background:#F8F8F8;
+  }
+
+  .light-mode-hr{
+    border-color: #e5e7eb;
+  }
+
+  /* sidebar */
+
+  .light-mode-sidebar-item{
+    color: #6E6B7B;
+  }
+  .light-mode-sidebar-item:hover{
+    color: white;
+    background:var(--blue);
+    font-weight: 600;
+  }
+ 
+  /* theme dark mode */
+
+  .dark-mode-bg-app{
+    background:#171E31;
+  }
+
+  .dark-mode-hr{
+    border-color: #4B556F;
+  }
+
+ 
+
+
+
+  

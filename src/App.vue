@@ -1,5 +1,6 @@
 <template>
-  <main class="bg-app h-screen">
+  <main 
+  :class="[`${theme}-bg-app`,' h-screen relative']">
     <Navbar
     @onDeploy="deployed = $event"
     />
@@ -17,10 +18,14 @@
 <script>
 import Sidebar from './components/Sidebar.vue'
 import Navbar from './components/Navbar.vue'
+import { mapState } from 'vuex';
 export default {
     components:{
         Navbar,
         Sidebar
+    },
+    computed: {
+        ...mapState(['theme']),
     },
     data(){
       return {
@@ -32,11 +37,6 @@ export default {
 
 <style  lang="css">
 @import './assets/app.css';
-
-.bg-app{
-  background:#F8F8F8;
-  position:relative;
-}
 
 .open{
   margin-left: 270px;
