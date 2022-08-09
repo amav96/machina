@@ -1,8 +1,16 @@
 <template>
   <main class="bg-app h-screen">
-    <Navbar/>
-    <Sidebar/>
-    <router-view class="relative"></router-view>
+    <Navbar
+    @onDeploy="deployed = $event"
+    />
+    <Sidebar
+    :deployed="deployed"
+    />
+    <router-view 
+    class="relative"
+    :class="[deployed ? 'open' : 'closed']"
+    >
+    </router-view>
   </main>
 </template>
 
@@ -13,6 +21,11 @@ export default {
     components:{
         Navbar,
         Sidebar
+    },
+    data(){
+      return {
+        deployed: false,
+      }
     }
 }
 </script>
@@ -22,6 +35,16 @@ export default {
 
 .bg-app{
   background:#F8F8F8;
+  position:relative;
+}
+
+.open{
+  margin-left: 270px;
+  transition: all 0.1s;
+}
+.closed{
+  margin-left: 78px;
+  transition: all 0.1s;
 }
 
 </style>

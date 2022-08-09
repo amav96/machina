@@ -1,42 +1,59 @@
 <template>
-  <div class="flex flex-col sidebar justify-between">
+  <div class="flex flex-col sidebar justify-between" :style="[deployed ? 'max-width: 260px;' : 'max-width: 68px;']">
       <div class="flex flex-col items-center ">
       <!-- first block -->
         <div
-        class="flex flex-row sidebar__item m-1 py-2 px-3 w-full items-center"
-        v-for="(first,index) in navbar.firstBlock"
+        class="flex flex-row sidebar__item m-1 py-2 px-2  items-center"
+        :class="[deployed ? 'w-full' : '']"
+        v-for="(item,index) in navbar.firstBlock"
         :key="index"
         >
-          <div>
-            <img   :src="`src/assets/images/sidebar/${first.icon}`">
+          <div class="flex justify-center">
+            <img   :src="`src/assets/images/sidebar/${item.icon}`">
           </div>
-          <div class="mx-2 sidebar__item__text">
-            {{first.text}}
+          <div 
+          v-if="deployed" 
+          class="mx-2 sidebar__item__text">
+            {{item.text}}
           </div>
         </div>
       <!-- second block -->
-        <div 
-        class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center"
-        v-for="(second,index) in navbar.secondBlock"
-        :key="index"
-        >
-          <div class="mx-2 sidebar__item__static">
-            {{second.text}}
+        
+          <div 
+          class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center"
+          v-for="(item,index) in navbar.secondBlock"
+          :key="index"
+          >
+            <template
+              v-if="deployed" 
+              >
+              <div class="mx-2 sidebar__item__static">
+                {{item.text}}
+              </div>
+              <div>
+                <img :src="`src/assets/images/sidebar/${item.icon}`">
+              </div> 
+            </template>
+            <template v-else>
+              <div class="mx-auto sidebar__item__static">
+                --
+              </div>
+            </template>
           </div>
-          <div>
-            <img :src="`src/assets/images/sidebar/${second.icon}`">
-          </div>
-        </div>
+       
       <!-- third block -->
         <div
-        class="flex flex-row sidebar__item m-1 py-2 px-3 w-full items-center"
+        class="flex flex-row sidebar__item m-1 py-2 px-2 items-center"
+        :class="[deployed ? 'w-full' : '']"
         v-for="(third,index) in navbar.thirdBlock"
         :key="index"
         >
           <div>
             <img   :src="`src/assets/images/sidebar/${third.icon}`">
           </div>
-          <div class="mx-2 sidebar__item__text">
+          <div
+          v-if="deployed" 
+          class="mx-2 sidebar__item__text">
             {{third.text}}
           </div>
         </div>
@@ -44,31 +61,44 @@
       
       <div class="flex flex-col items-center">
        <!-- fourth block -->
-        <div class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center">
-          <div class="mx-2 sidebar__item__static">
-            {{navbar.fourthBlock.text}}
+        <div 
+       
+        class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center">
+          <div 
+          class="sidebar__item__static "
+          :class="deployed ? 'mx-2' : 'mx-auto'"
+          >
+            {{deployed ? navbar.fourthBlock.text : '--'}}
           </div>
         </div>
          <!-- fifth block -->
         <div
-          class="flex flex-row sidebar__item m-1 py-2 px-3 w-full items-center"
-          v-for="(fifth,index) in navbar.thirdBlock"
+          class="flex flex-row sidebar__item m-1 py-2 px-2  items-center"
+          :class="[deployed ? 'w-full' : '']"
+          v-for="(item,index) in navbar.fifthBlock"
           :key="index"
           >
           <div>
-            <img   :src="`src/assets/images/sidebar/${fifth.icon}`">
+            <img   :src="`src/assets/images/sidebar/${item.icon}`">
           </div>
-          <div class="mx-2 sidebar__item__text">
-            {{fifth.text}}
+          <div 
+          v-if="deployed" 
+          class="mx-2 sidebar__item__text">
+            {{item.text}}
           </div>
         </div>
       </div>
-     
   </div>
 </template>
 
 <script>
 export default {
+  props:{
+    deployed: {
+      type: Boolean,
+      default: false,
+    }
+  },
   data(){
     return {
       navbar: {
@@ -104,10 +134,10 @@ export default {
   position: absolute;
   z-index: 99;
   width: 100%;
-  max-width: 260px;
   height: calc(100vh - 63px);
   background:#FFFFFF;
   overflow-y: auto;
+  transition: all 0.1s
 }
 
 .sidebar::-webkit-scrollbar{
