@@ -1,5 +1,5 @@
 <template>
-  <div class="c-bg-blue flex items-center justify-between text-white navbar">
+  <nav class="c-bg-blue flex items-center justify-between text-white navbar">
     <!-- first block -->
     <div class="flex flex-row items-center">
         <div class="mx-2">
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>

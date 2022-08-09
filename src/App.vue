@@ -1,7 +1,9 @@
 <template>
-  <Navbar/>
-  <Sidebar/>
-  <router-view></router-view>
+  <main class="bg-app h-screen">
+    <Navbar/>
+    <Sidebar/>
+    <router-view class="relative"></router-view>
+  </main>
 </template>
 
 <script>
@@ -17,6 +19,10 @@ export default {
 
 <style  lang="css">
 @import './assets/app.css';
+
+.bg-app{
+  background:#F8F8F8;
+}
 
 </style>
 
