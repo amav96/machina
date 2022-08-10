@@ -134,7 +134,7 @@ export default {
 } 
 
 .open{
-  margin-left: 270px;
+  margin-left: 261px;
   transition: all 0.1s;
 }
 .closed{

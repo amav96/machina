@@ -194,14 +194,18 @@ export default {
                 const [instance] = this.$refs.refOptions; 
                 instance.localDisplay = !instance.localDisplay
             }
-            if(this.dashboard.secondBlock){
-                this.dashboard.secondBlock.forEach((item,index) => {
-                    if(item.component === 'Dropdown'){
-                        if(this.dashboard.secondBlock[index].dynamicClass !== ''){
-                            this.dashboard.secondBlock[index].dynamicClass = ''
-                        }else{
-                            this.dashboard.secondBlock[index].dynamicClass = 'filter-select'
-                        }
+            if(this.dashboard){
+                this.dashboard.forEach((item,index) => {
+                    if(item.actions){
+                        item.actions.forEach((action,i) => {
+                            if(action.component && action.component === 'Dropdown'){
+                                if(this.dashboard[index].actions[i].dynamicClass == ''){
+                                    this.dashboard[index].actions[i].dynamicClass = 'filter-select'
+                                }else{
+                                    this.dashboard[index].actions[i].dynamicClass = ''
+                                }
+                            }
+                        })
                     }
                 })
             }
@@ -317,7 +321,7 @@ export default {
 /*nuevos*/
 
 .dropdown-dashboard{
-    top:50px;
+    top:65px;
     right: 20px;
     height:100%;
     min-height: 100px;
