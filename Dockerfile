@@ -1,14 +1,17 @@
 #Primer paso para constuir proyecto
 FROM node:16.13.1 as build
-RUN mkdir /app
-WORKDIR /app
-COPY package*.json ./
+
+WORKDIR /usr/src/app
+COPY . ./
 RUN npm install
-COPY . .
 RUN npm run build
 
-#paso dos create nginx server
-FROM nginx:latest as prod-stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Stage 2 - Deploy with NGNIX
+FROM nginx:1.15.2-alpine
+
+COPY --from=build /usr/src/app/dist /var/www
+COPY nginx.conf /etc/nginx/nginx.conf
+
 EXPOSE 3000
-CMD ["nginx","-g","daemon off;"]
+
+ENTRYPOINT ["nginx","-g","daemon off;"]

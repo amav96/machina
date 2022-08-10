@@ -7,13 +7,13 @@
         @click="navbar.menu.method ? callMethod(navbar.menu.method) : null"
         class="ml-6 cursor-pointer">
             <img  
-            :src="`src/assets/images/${deployed ? navbar.menu.deployedIcon : navbar.menu.icon}`"
+            :src="getImageUrl(`${deployed ? navbar.menu.deployedIcon : navbar.menu.icon}`)"
             >
         </div>
         <div 
         class="mx-6">
             <img  
-            :src="`src/assets/images/${navbar.logo.icon}`"
+            :src="getImageUrl(navbar.logo.icon)"
             >
         </div>
     </div>
@@ -31,10 +31,10 @@
                 <template 
                 v-if="item.context && item.context === 'theme'"
                 >
-                    <img  :src="`src/assets/images/${theme === 'dark-mode' ?  'light-mode': 'dark-mode'}.svg`">
+                    <img :src="getImageUrl(`${theme === 'dark-mode' ?  'light-mode': 'dark-mode'}.svg`)" >
                 </template>
                 <template v-else>
-                    <img  :src="`src/assets/images/${item.icon}`">
+                    <img   :src="getImageUrl(item.icon)">
                 </template>
                 <div 
                 v-if="item.notifications && item.notifications > 0"
@@ -60,7 +60,7 @@
             >
             <Media
                 :icon="navbar.profile.icon"
-                :img="`src/assets/images/${navbar.profile.avatar}`"
+                :img="getImageUrl(navbar.profile.avatar)"
                 :cClass="`${theme}-media`"
             />
             </div>
@@ -116,6 +116,9 @@ export default {
         },
         setTheme(){
             this.changeTheme();
+        },
+        getImageUrl(image) {
+            return new URL(`../assets/images/${image}`, import.meta.url).href
         }
     }
 }

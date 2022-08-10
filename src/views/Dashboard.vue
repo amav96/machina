@@ -16,7 +16,7 @@
                             :key="index"
                             :class="['mx-1', `${theme}-action-icon`,'flex justify-center items-center']">
                             
-                                <font-awesome-icon v-if="item.icon" :icon="item.icon"/>
+                                
                                 <template v-if="item.svg">
                                     <ImgSvg
                                     :name="item.svg"
@@ -42,8 +42,7 @@
                             :class="['mx-1', 
                             `${theme}${item.aliasClass}`,`${theme}-${item.dynamicClass}`,'flex justify-center items-center flex flex-row']"
                             >
-                            <font-awesome-icon
-                                v-if="item.icon" :icon="item.icon"/>
+
                             <template
                             
                             v-if="item.svg">
@@ -73,8 +72,8 @@
             </template>
         </div>
         <div :class="['footer-section',`${theme}-footer-section`, 'flex flex-row']">
-            <img class="mx-2" src="src/assets/images/COPYRIGHT.svg">
-            <img class="mx-2" src="src/assets/images/EdMachina.svg">
+            <img class="mx-2" :src="getImageUrl('COPYRIGHT.svg')">
+            <img class="mx-2" :src="getImageUrl('EdMachina.svg')">
         </div>
     </div>
     
@@ -209,6 +208,9 @@ export default {
                     }
                 })
             }
+        },
+        getImageUrl(image) {
+            return new URL(`../assets/images/${image}`, import.meta.url).href
         }
     }
     

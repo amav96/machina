@@ -1,6 +1,6 @@
 <template>
     <img :class="cClass" v-if="img" :src="img">
-    <font-awesome-icon :class="cClass" v-if="icon" :icon="icon"/>
+    
 </template>
 
 <script>
