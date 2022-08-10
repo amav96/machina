@@ -1,18 +1,22 @@
+
+html{
+  height:100%;
+}
 body{
+  
     margin: 0 !important;
     padding: 0 !important;
-    box-sizing: border-box;
-    /*  */
   }
-  #app{
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box;
-  }
+#app{
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
 
   :root {
     --blue: #4436FD;
-    --blue-dark:#2C354D;
+    --blue-dark:#384159;
+    --blue-dark-heavy: #2C354D;
     --gray:#6E6B7B;
     --yellow:#F1BC01;
     --dark:#000000;

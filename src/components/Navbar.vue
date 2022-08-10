@@ -18,16 +18,24 @@
         </div>
     </div>
     <!-- first Block -->
-    <div class="flex flex-row items-center">
+    <div class="flex flex-row items-center relative">
         <!-- items -->
         <div class="flex flex-row">
             <div
-            class="mx-2 cursor-pointer relative"
+            class="mx-1 cursor-pointer relative flex items-center justify-center "
+            style="min-width:28px;min-height:30px;text-alig:center;"
             v-for="(item,index) in navbar.firstBlock"
             :key="index"
             @click="item.method ? callMethod(item.method) : null"
-             >
-                <img class="fs"  :src="`src/assets/images/${item.icon}`">
+             >  
+                <template 
+                v-if="item.context && item.context === 'theme'"
+                >
+                    <img  :src="`src/assets/images/${theme === 'dark-mode' ?  'light-mode': 'dark-mode'}.svg`">
+                </template>
+                <template v-else>
+                    <img  :src="`src/assets/images/${item.icon}`">
+                </template>
                 <div 
                 v-if="item.notifications && item.notifications > 0"
                 class="notifications-navbar">
@@ -37,11 +45,31 @@
                 </div>
             </div>
         </div>
+        <div class="flex flex-row items-center mx-2 cursor-pointer relative">
+            <!-- perfil data -->
+            <div
+            @click="navbar.profile.method ? callMethod(navbar.profile.method) : null"
+            class="flex flex-col text-right mx-2"
+            >
+            <div class="text-profile">{{ navbar.profile.name }}</div>
+            <div class="text-profile">{{ navbar.profile.role }}</div>
+            </div>
+            <div
+            @click="navbar.profile.method ? callMethod(navbar.profile.method) : null"
+            class="mx-3"
+            >
+            <Media
+                :icon="navbar.profile.icon"
+                :img="`src/assets/images/${navbar.profile.avatar}`"
+                :cClass="`${theme}-media`"
+            />
+            </div>
+        </div>
         <!-- profile -->
-        <Profile
-        :profile="navbar.profile"
-        :dropdown="dropdown"
-        @onDropdown="setDropdown()"
+        <Dropdown
+        classDropdown='dropdown-profile'
+        :dropdown="navbar.profile.dropdown"
+        :display="dropdown"
         :theme="theme"
         />
     </div>
@@ -50,9 +78,10 @@
 
 <script>
 import {mapActions} from 'vuex';
-import Profile from '../components/Profile.vue'
+import Media from "./Media.vue";
 export default {
-    components:{Profile},
+ 
+    components:{Media},
     props:{
         theme:{
             type: String,
@@ -94,6 +123,17 @@ export default {
 
 <style>
 
+    .navbar{
+        height:63px;
+    }
+    .text-profile{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+    }
+
     .light-mode-navbar{
         background:var(--blue);
     }
@@ -110,9 +150,9 @@ export default {
         height: 18px;
         justify-content: center;
         position: absolute;
-        right: -10px;
+        right: -4px;
         text-align: center;
-        top: -11px;
+        top: -6px;
         width: 18px;
         z-index: 50;
 
@@ -127,18 +167,15 @@ export default {
         color: #FFFFFF;
     }
 
-    .navbar{
-        height:63px;
-    }
-    .dropdown{
-        bottom:-105px;
-        right: 0;
+    .dropdown-profile{
+        top:49px;
+        right: 10px;
         height:100%;
         min-height: 100px;
         position: absolute;
-        width: 100%;
+        width: 208px;
         min-width: 208px;
-        z-index: 20;
+        z-index: 25;
     }
 
 </style>

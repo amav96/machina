@@ -2,8 +2,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    theme: 'dark-mode'
-    // theme: 'light-mode'
+    theme: 'light-mode'
   },
   mutations:{ 
     CHANGE_THEME(state){
@@ -12,7 +11,6 @@ export default createStore({
       }else{
         state.theme = 'dark-mode'
       }
-      
     }
   },
   actions: {

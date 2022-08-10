@@ -19,6 +19,16 @@ import {
   faBell, //notifications
   faSignOut,
   faAngleRight, //flecha derecha
+  faFilter,
+  faGrip, //grids
+  faTableCells, //tabs
+  faCircleXmark, //ciruclo con exis,
+  faDownload,
+  faShare, //compartir
+  faSliders, //ajustes,
+  faClock, //relog
+  faCopy,
+
 
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -43,5 +53,15 @@ export const icons = [
   faBell,
   faSignOut,
   faAngleRight,
+  faFilter,
+  faGrip,
+  faTableCells,
+  faCircleXmark,
+  faDownload,
+  faShare,
+  faSliders,
+  faClock,
+  faCopy,
+
 
 ];

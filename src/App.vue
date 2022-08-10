@@ -1,6 +1,6 @@
 <template>
   <main 
-  :class="[`${theme}-bg-app`,' h-screen relative']">
+  :class="[`${theme}-bg-app`]">
     <Navbar
     :navbar="navbar"
     :theme="theme"
@@ -13,11 +13,13 @@
     
     />
     <router-view 
-    class="relative"
+    class="relative main-app"
     :class="[deployed ? 'open' : 'closed']"
     >
     </router-view>
+ 
   </main>
+  
 </template>
 
 <script>
@@ -37,25 +39,25 @@ export default {
         deployed: false,
         sidebar: {
             firstBlock: [
-              {icon: 'home', text: 'Dashboard'},
-              {icon: 'calendar-alt', text: 'Calendar'},
+              {svg: 'home', text: 'Dashboard'},
+              {svg: 'calendar', text: 'Calendar'},
             ],
             secondBlock: [
-              {icon: 'receipt', text: 'REPORTS'},
+              {svg: 'list_alt', text: 'REPORTS'},
             ],
             thirdBlock: [
-              {icon: 'plus-square',  text: 'Machina Hi'},
-              {icon: 'arrow-alt-circle-up', text: 'Heads Up'},
-              {icon: 'sync', text: 'Stay Around'},
-              {icon: 'chart-bar', text: 'Analytics'},
-              {icon: 'chart-line', text: 'My Reports'},
+              {svg: 'square',  text: 'Machina Hi'},
+              {svg: 'up', text: 'Heads Up'},
+              {svg: 'sync', text: 'Stay Around'},
+              {svg: 'graphics2', text: 'Analytics'},
+              {svg: 'graphics', text: 'My Reports', dropdown: [], svgDropdown: 'navigate_next'},
             ],
             fourthBlock: {text: 'Settings'},
             fifthBlock: [
-              {icon: 'user', text: 'Manage Users'},
-              {icon: 'cloud-download', text: 'Cloud Connect'},
-              {icon: 'arrows-alt', text: 'Api Manager'},
-              {icon: 'question-circle', text: 'Help/Support'},
+              {svg: 'user', text: 'Manage Users'},
+              {svg: 'cloud', text: 'Cloud Connect'},
+              {svg: 'x', text: 'Api Manager'},
+              {svg: 'question', text: 'Help/Support'},
             ],
         },
         navbar: {
@@ -67,7 +69,7 @@ export default {
           },
           firstBlock: [
               {icon:'search.svg'},
-              {icon:'dark_mode.svg' , method : 'setTheme'},
+              {method : 'setTheme',  context: 'theme'},
               {icon:'settings.svg'},
               {icon:'notifications.svg', notifications: 4}
           ],
@@ -78,13 +80,13 @@ export default {
               method: 'setDropdown',
               dropdown: [
                   [
-                      {icon : 'user', text: 'Profile'},
+                      {svg : 'user', text: 'Profile'},
                   ],
                   [
                       {
                           text: 'Teclab',
                           subText: ' 12829347',
-                          img: 'right.svg',
+                          svg: 'navigate_next',
                           displayDropdown: false,
                           dropdown: [
                               {
@@ -101,13 +103,13 @@ export default {
                       }
                   ],
                   [
-                      {icon : 'envelope', text: 'Inbox'},
-                      {icon : 'bell', text: 'Notifications'},
+                      {svg : 'email', text: 'Inbox'},
+                      {svg : 'notifications', text: 'Notifications'},
                   ],
                   [
-                      {icon : 'cog', text: 'Account Settings'},
-                      {icon : 'receipt', text: 'Billing'},
-                      {icon : 'sign-out', text: 'Log Out', method: 'logout'},
+                      {svg : 'settings', text: 'Account Settings'},
+                      {svg : 'receipt', text: 'Billing'},
+                      {svg : 'logout', text: 'Log Out', method: 'logout'},
                   ],
               ]
           }
@@ -119,15 +121,28 @@ export default {
 
 <style  lang="css">
 @import './assets/app.css';
+  
+ .main-app{
+
+  max-height: calc(100vh - 55px);
+  overflow-y: scroll;
+ }
+
+ .main-app::-webkit-scrollbar{
+    display: none;
+
+} 
 
 .open{
   margin-left: 270px;
   transition: all 0.1s;
 }
 .closed{
-  margin-left: 78px;
+  margin-left: 69px;
   transition: all 0.1s;
 }
+
+
 
 </style>
 

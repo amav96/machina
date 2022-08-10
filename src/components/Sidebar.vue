@@ -10,11 +10,16 @@
         v-for="(item,index) in sidebar.firstBlock"
         :key="index"
         >
-          <div class="flex justify-center">
-          <Media
-          :icon="item.icon"
-          :img="item.img"
-          />
+          <div class="flex justify-center" >
+            <Media
+            v-if="item.img || item.icon"
+            :icon="item.icon"
+            :img="item.img"
+            />
+            <ImgSvg
+            v-if="item.svg"
+            :name="item.svg"
+            />
           </div>
           <div 
           v-if="deployed" 
@@ -24,7 +29,7 @@
         </div>
       <!-- second block -->
           <div 
-          class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center"
+          class="flex flex-row justify-between sidebar__static w-full mt-3 mb-0 items-center"
           v-for="(item,index) in sidebar.secondBlock"
           :key="index"
           >
@@ -39,8 +44,13 @@
               :class="[`${theme}-sidebar-static`]"
               >
                 <Media
+                v-if="item.img || item.icon"
                 :icon="item.icon"
                 :img="item.img"
+                />
+                <ImgSvg
+                v-if="item.svg"
+                :name="item.svg"
                 />
               </div> 
             </template>
@@ -59,16 +69,36 @@
         v-for="(item,index) in sidebar.thirdBlock"
         :key="index"
         >
-          <div>
-            <Media
-            :icon="item.icon"
-            :img="item.img"
-            />
-          </div>
-          <div
-          v-if="deployed" 
-          class="mx-2 sidebar__item__text">
-            {{item.text}}
+          <div class="flex flex-row justify-between w-full">
+            <div class="flex flex-row items-center">
+              <div>
+                <Media
+                v-if="item.img || item.icon"
+                :icon="item.icon"
+                :img="item.img"
+                />
+                <ImgSvg
+                v-if="item.svg"
+                :name="item.svg"
+                />
+              </div>
+              <div
+              v-if="deployed"
+              class="mx-2 sidebar__item__text">
+                {{item.text}}
+              </div>
+            </div>
+            <div v-if="deployed && item.dropdown" class="flex items-center mr-4">
+              <Media
+              v-if="item.img || item.iconDropdown"
+              :icon="item.icon"
+              :img="item.img"
+              />
+              <ImgSvg
+              v-if="item.svgDropdown"
+              :name="item.svgDropdown"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -76,7 +106,7 @@
       <div class="flex flex-col items-center">
        <!-- fourth block -->
         <div 
-        class="flex flex-row justify-between sidebar__static w-full mt-3 mb-1 items-center">
+        class="flex flex-row justify-between sidebar__static w-full mt-3 mb-0 items-center">
           <div 
           class="sidebar__item__static "
           :class="[deployed ? 'mx-2' : 'mx-auto',`${theme}-sidebar-static`]"
@@ -94,8 +124,13 @@
           >
           <div>
             <Media
+            v-if="item.img || item.icon"
             :icon="item.icon"
             :img="item.img"
+            />
+            <ImgSvg
+            v-if="item.svg"
+            :name="item.svg"
             />
           </div>
           <div 
@@ -148,12 +183,25 @@ export default {
 .light-mode-sidebar-item:hover{
   color: white !important;
   background:var(--blue);
-  font-weight: 600;
+ 
 }
 
 .light-mode-sidebar-static{
   background:#FFFFFF;
   color:#BABFC7 !important;
+}
+
+.light-mode-sidebar-item .svg-img{
+  display: flex;
+  
+  fill:#6E6B7B ;
+}
+.light-mode-sidebar-item:hover .svg-img{
+  fill:white ;
+}
+
+.light-mode-sidebar-static .svg-img{
+  fill:#6E6B7B ;
 }
 
 .dark-mode-sidebar{
@@ -175,10 +223,19 @@ export default {
   color:#C4C4C4;
 }
 
+.dark-mode-sidebar-item .svg-img{
+  fill:#C4C4C4;
+}
+.dark-mode-sidebar-item:hover .svg-img{
+  fill:#283046 ;
+}
+
 .sidebar{
   
-  height: calc(100vh - 63px);
+  
+  height: calc(100vh - 55px);
   overflow-y: auto;
+  overflow-x: hidden;
   position: absolute;
   transition: all 0.1s;
   width: 100%;
@@ -199,9 +256,17 @@ export default {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
   cursor:pointer;
   max-width: 230px;
+  height:42px;
 }
 .sidebar__static{
   max-width: 230px;
+  height:33px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  text-transform: uppercase;
 }
 .sidebar__item__static{
   cursor:pointer;
