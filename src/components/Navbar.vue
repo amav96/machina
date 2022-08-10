@@ -1,5 +1,6 @@
 <template>
-  <nav class="c-bg-blue flex items-center justify-between text-white navbar">
+  <nav 
+  :class="['flex items-center justify-between text-white navbar', `${theme}-navbar`]">
     <!-- menu y logo -->
     <div class="flex flex-row items-center">
         <div 
@@ -21,11 +22,19 @@
         <!-- items -->
         <div class="flex flex-row">
             <div
-            class="mx-2"
+            class="mx-2 cursor-pointer relative"
             v-for="(item,index) in navbar.firstBlock"
             :key="index"
+            @click="item.method ? callMethod(item.method) : null"
              >
                 <img class="fs"  :src="`src/assets/images/${item.icon}`">
+                <div 
+                v-if="item.notifications && item.notifications > 0"
+                class="notifications-navbar">
+                    <div class="text">
+                    {{item.notifications}}
+                    </div>
+                </div>
             </div>
         </div>
         <!-- profile -->
@@ -33,77 +42,35 @@
         :profile="navbar.profile"
         :dropdown="dropdown"
         @onDropdown="setDropdown()"
+        :theme="theme"
         />
     </div>
   </nav>
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 import Profile from '../components/Profile.vue'
 export default {
     components:{Profile},
+    props:{
+        theme:{
+            type: String,
+            default: 'light-mode'
+        },
+        navbar:{
+            type: Object
+        }
+    },
     data(){
         return {
-            navbar: {
-                menu:{
-                    icon: 'menu.png', deployedIcon:'search.svg' , method: 'setDeploy',
-                },
-                logo:{
-                    icon : 'logo.png'
-                },
-                firstBlock: [
-                    {icon:'search.svg'},
-                    {icon:'dark_mode.svg'},
-                    {icon:'settings.svg'},
-                    {icon:'notifications.svg'}
-                ],
-                profile:{
-                    name: 'Jane Doe',
-                    role: 'Admin',
-                    avatar: 'avatar.svg',
-                    method: 'setDropdown',
-                    dropdown: [
-                        [
-                            {icon : 'user', text: 'Profile'},
-                        ],
-                        [
-                            {
-                                text: 'Teclab',
-                                subText: ' 12829347',
-                                img: 'right.svg',
-                                displayDropdown: false,
-                                dropdown: [
-                                    {
-                                        main: true,
-                                        text: 'All Accounts'
-                                    },
-                                    {
-                                        text: 'Teclab: ', textContent: '12829347'
-                                    },
-                                    {
-                                        text: 'IPP: ', textContent: '12829333'
-                                    },
-                                ]
-                            }
-                        ],
-                        [
-                            {icon : 'envelope', text: 'Inbox'},
-                            {icon : 'bell', text: 'Notifications'},
-                        ],
-                        [
-                            {icon : 'cog', text: 'Account Settings'},
-                            {icon : 'receipt', text: 'Billing'},
-                            {icon : 'sign-out', text: 'Log Out', method: 'logout'},
-                        ],
-                    ]
-                }
-            },
             deployed: false,
             dropdown: false,
             
         }
     },
     methods: {
+        ...mapActions(['changeTheme']),
         callMethod(method){
             if(method && Object.prototype.hasOwnProperty.call(this, method)){
                 this[method]()
@@ -117,12 +84,48 @@ export default {
         },
         setDropdown(){
             this.dropdown = !this.dropdown;
+        },
+        setTheme(){
+            this.changeTheme();
         }
     }
 }
 </script>
 
 <style>
+
+    .light-mode-navbar{
+        background:var(--blue);
+    }
+
+    .dark-mode-navbar{
+        background:var(--dark);
+    }
+
+    .notifications-navbar{
+        align-items: center;
+        background:red;
+        border-radius: 50%;
+        display: flex;
+        height: 18px;
+        justify-content: center;
+        position: absolute;
+        right: -10px;
+        text-align: center;
+        top: -11px;
+        width: 18px;
+        z-index: 50;
+
+    }
+    .notifications-navbar .text{
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        text-align: center;
+        color: #FFFFFF;
+    }
 
     .navbar{
         height:63px;
@@ -135,6 +138,7 @@ export default {
         position: absolute;
         width: 100%;
         min-width: 208px;
+        z-index: 20;
     }
 
 </style>

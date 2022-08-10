@@ -5,8 +5,8 @@
       @click="profile.method ? callMethod(profile.method) : null"
       class="flex flex-col text-right mx-2"
     >
-      <div>{{ profile.name }}</div>
-      <div>{{ profile.role }}</div>
+      <div class="text-profile">{{ profile.name }}</div>
+      <div class="text-profile">{{ profile.role }}</div>
     </div>
     <div
       @click="profile.method ? callMethod(profile.method) : null"
@@ -23,14 +23,14 @@
       <div
         v-for="(items, index) in profile.dropdown"
         :key="index"
-        class="flex flex-col"
+        :class="['flex flex-col']"
       >
+        <!-- items del primer dropdwon -->
         <div
           v-for="(item, i) in items"
           :key="i"
           :class="[
-            `${theme}-item-profile`,
-            (item.icon || item.img) && item.dropdown ? 'justify-between' : '',
+            (item.icon || item.img) && item.dropdown ? `${theme}-item-first-node justify-between` : `${theme}-item-profile`,
             'flex flex-row p-2 items-center',
             i === 0 && index === 0 ? 'rounded-t' : '',
             i === items.length - 1 && index === profile.dropdown.length - 1
@@ -51,11 +51,15 @@
             />
           </div>
           <template v-if="(item.icon || item.img) && item.dropdown">
-            <div class="flex flex-col">
-              <div :class="['mx-2 font-bold', `${theme}-title-profile`]">
+            <div 
+            class="flex flex-col"
+            >
+              <div 
+              :class="['mx-2 font-bold']"
+              >
                 {{ item.text }}
               </div>
-              <div :class="['mx-2', `${theme}-title-profile`]">
+              <div :class="['mx-2',`${theme}-dropdown-main-subText`]">
                 {{ item.subText }}
               </div>
             </div>
@@ -102,7 +106,9 @@
                     <span :class="['font-bold']">
                       {{ it.text }}
                     </span>
-                    <span v-if="it.textContent" :class="['mx-1']">
+                    <span 
+                    v-if="it.textContent" 
+                    :class="['mx-1']">
                       {{ it.textContent }}
                     </span>
                   </template>
@@ -126,7 +132,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import Media from "./Media.vue";
 export default {
   components: { Media },
@@ -138,9 +143,10 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  computed: {
-    ...mapState(["theme"]),
+    theme:{
+      type: String,
+      default: 'light-mode'
+    }
   },
   methods: {
     callMethod(method) {
@@ -158,14 +164,33 @@ export default {
 </script>
 
 <style>
+.text-profile{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
 /* profile components */
 
+.light-mode-item-first-node{
+   color:var(--blue);
+  background: white;
+}
+/*
+.light-mode-item-first-node:hover{
+  background: var(--blue);
+  color:white;
+}
+*/
 .light-mode-item-profile {
   background: white;
-  color: #6e6b7b;
+  color: rgb(104, 99, 99);
 }
+
 .light-mode-item-profile:hover {
-  background: rgb(244, 240, 236);
+  background: var(--blue);
+  color:white;
 }
 
 .light-mode-title-profile {
@@ -183,16 +208,23 @@ export default {
 .light-mode-header-node:hover {
   background: white;
 }
-.light-mode-item-profile {
-  background: #384159;
-  color: #c4c4c4;
+.light-mode-dropdown-main-subText{
+  color: rgb(104, 99, 99);
 }
 
 /* porfile components */
 
-.dark-mode-title-profile {
+
+.dark-mode-item-first-node{
   color: var(--yellow);
+  background: #384159;
 }
+/*
+.dark-mode-item-first-node:hover{
+  color: white !important;
+  background: var(--yellow);
+}
+*/
 
 .dark-mode-title-accounts:hover {
   color: var(--blue-dark);
@@ -222,7 +254,7 @@ export default {
 }
 
 .dark-mode-item-profile:hover {
-  background: white;
+  background: #F1BC01;
   color: var(--blue-dark);
   font-weight: 500;
 }

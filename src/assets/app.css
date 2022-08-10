@@ -15,6 +15,7 @@ body{
     --blue-dark:#2C354D;
     --gray:#6E6B7B;
     --yellow:#F1BC01;
+    --dark:#000000;
 
   }
   
@@ -53,16 +54,7 @@ body{
     border-color: #e5e7eb;
   }
 
-  /* sidebar */
-
-  .light-mode-sidebar-item{
-    color: #6E6B7B;
-  }
-  .light-mode-sidebar-item:hover{
-    color: white;
-    background:var(--blue);
-    font-weight: 600;
-  }
+ 
  
   /* theme dark mode */
 

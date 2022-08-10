@@ -18,6 +18,7 @@ import {
   faEnvelope,//carta
   faBell, //notifications
   faSignOut,
+  faAngleRight, //flecha derecha
 
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -41,5 +42,6 @@ export const icons = [
   faEnvelope,
   faBell,
   faSignOut,
+  faAngleRight,
 
 ];
