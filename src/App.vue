@@ -2,19 +2,19 @@
   <main 
   :class="[`${theme}-bg-app`]">
     <Navbar
-    :navbar="navbar"
+    :navbar="app.navbar"
     :theme="theme"
     @onDeploy="deployed = $event"
     />
     <Sidebar
-    :sidebar="sidebar"
+    :sidebar="app.sidebar"
     :theme="theme"
     :deployed="deployed"
-    
     />
     <router-view 
     class="relative main-app"
     :class="[deployed ? 'open' : 'closed']"
+    :dashboard="app.dashboard"
     >
     </router-view>
  
@@ -25,6 +25,7 @@
 <script>
 import Sidebar from './components/Sidebar.vue'
 import Navbar from './components/Navbar.vue'
+import machina from './assets/json/machina.json'
 import { mapState } from 'vuex';
 export default {
     components:{
@@ -34,86 +35,13 @@ export default {
     computed: {
         ...mapState(['theme']),
     },
+    created(){
+      this.app = machina
+    },
     data(){
       return {
         deployed: false,
-        sidebar: {
-            firstBlock: [
-              {svg: 'home', text: 'Dashboard'},
-              {svg: 'calendar', text: 'Calendar'},
-            ],
-            secondBlock: [
-              {svg: 'list_alt', text: 'REPORTS'},
-            ],
-            thirdBlock: [
-              {svg: 'square',  text: 'Machina Hi'},
-              {svg: 'up', text: 'Heads Up'},
-              {svg: 'sync', text: 'Stay Around'},
-              {svg: 'graphics2', text: 'Analytics'},
-              {svg: 'graphics', text: 'My Reports', dropdown: [], svgDropdown: 'navigate_next'},
-            ],
-            fourthBlock: {text: 'Settings'},
-            fifthBlock: [
-              {svg: 'user', text: 'Manage Users'},
-              {svg: 'cloud', text: 'Cloud Connect'},
-              {svg: 'x', text: 'Api Manager'},
-              {svg: 'question', text: 'Help/Support'},
-            ],
-        },
-        navbar: {
-          menu:{
-              icon: 'menu.svg', deployedIcon:'menu.svg' , method: 'setDeploy',
-          },
-          logo:{
-              icon : 'logo.png'
-          },
-          firstBlock: [
-              {icon:'search.svg'},
-              {method : 'setTheme',  context: 'theme'},
-              {icon:'settings.svg'},
-              {icon:'notifications.svg', notifications: 4}
-          ],
-          profile:{
-              name: 'Jane Doe',
-              role: 'Admin',
-              avatar: 'avatar.svg',
-              method: 'setDropdown',
-              dropdown: [
-                  [
-                      {svg : 'user', text: 'Profile'},
-                  ],
-                  [
-                      {
-                          text: 'Teclab',
-                          subText: ' 12829347',
-                          svg: 'navigate_next',
-                          displayDropdown: false,
-                          dropdown: [
-                              {
-                                  main: true,
-                                  text: 'All Accounts'
-                              },
-                              {
-                                  text: 'Teclab: ', textContent: '12829347'
-                              },
-                              {
-                                  text: 'IPP: ', textContent: '12829333'
-                              },
-                          ]
-                      }
-                  ],
-                  [
-                      {svg : 'email', text: 'Inbox'},
-                      {svg : 'notifications', text: 'Notifications'},
-                  ],
-                  [
-                      {svg : 'settings', text: 'Account Settings'},
-                      {svg : 'receipt', text: 'Billing'},
-                      {svg : 'logout', text: 'Log Out', method: 'logout'},
-                  ],
-              ]
-          }
-        },
+        app: {}
       }
     }
 }

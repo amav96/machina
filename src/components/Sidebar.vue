@@ -160,10 +160,6 @@ export default {
       default: 'light-mode'
     }
   },
-  data(){
-    return {
-    }
-  }
 }
 </script>
 

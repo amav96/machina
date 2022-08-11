@@ -87,90 +87,17 @@ export default {
     components:{
         Filter,
     },
+    props:{
+        dashboard: {
+            type: Object,
+        }
+    },
     computed: {
         ...mapState(['theme']),
     },
     data(){
         return {
-            filterDisplay:true,
-            dashboard: [
-                {
-                        title: 'My Report',
-                        infoSection : [
-                            { svg : 'copy'},
-                            { svg : 'share'},
-                        ],
-                        actions: [
-                            {
-                                svg: 'filter', 
-                                component: 'Filter', 
-                                ref: 'refFilter',
-                                props:{ 
-                                    filters: [
-                                        {name:'A 01 - 2022' , svg: 'remove' },
-                                        {name:'Age', svg: 'remove' },
-                                        {name:'Career' , svg: 'remove' },
-                                        {name:'All' , svg: 'remove' },
-                                    ],
-                                },
-                                method: 'setFilter',
-                                aliasClass: '-action-icon'
-                            },
-                            {svg: 'dashboard', aliasClass: '-action-icon'},
-                            {
-                                svg: 'app_registration',
-                                component: 'Dropdown', 
-                                ref: 'refOptions',
-                                props:{ 
-                                    dropdown: [
-                                        [
-                                            {svg : 'donwload', text: 'Export Report'},
-                                            {svg : 'share', text: 'Share report'},
-                                            {svg : 'schedule', text: 'Report Settings'},
-                                            {svg : 'dashboard', text: 'Edit Report'},
-                                            {svg : 'pin', text: 'Pin Report'},
-                                            
-                                        ],
-                                        [
-                                            {svg : 'addchart', text: 'New report'},
-                                            {svg : 'description', text: 'My reports'},
-                                        ],
-                                    ],
-                                    classDropdown:'dropdown-dashboard',
-                                    firstWithOutRounded: true
-                                },
-                                method: 'setOptions',
-                                aliasClass: '-action-icon-dropdown',
-                                dynamicClass: ''
-                            },
-                        ],
-                        content:[
-                            [
-                                { style: 'width:267px;height: 164px;margin:6px 10px 6px 10px' },
-                                { style: 'width:267px;height: 164px;margin:6px 10px 6px 10px' },
-                                { style: 'width:267px;height: 164px;margin:6px 10px 6px 10px' },
-                                { style: 'width:267px;height: 164px;margin:6px 10px 6px 10px' },
-                                
-                            ],
-                            [
-                                { style: 'width:366px;height: 357px;margin:6px 8px 6px 8px' },
-                                { style: 'width:366px;height: 357px;margin:6px 8px 6px 8px' },
-                                { style: 'width:366px;height: 357px;margin:6px 8px 6px 8px' },
-                            ]
-                        ]
-                },
-                {
-                        title: 'New Section',
-                        content:[
-                            [
-                                { style: 'width:366px;height: 357px;margin:6px 8px 6px 8px' },
-                                { style: 'width:748px;height: 357px;margin:6px 8px 6px 8px' },
-                            ]
-                        ]
-                },
-            ]
-            
-              
+            filterDisplay:true,   
         }
     },
     methods: {

@@ -1,0 +1,287 @@
+{
+    "sidebar":{
+        "firstBlock":[
+           {
+              "svg":"home",
+              "text":"Dashboard"
+           },
+           {
+              "svg":"calendar",
+              "text":"Calendar"
+           }
+        ],
+        "secondBlock":[
+           {
+              "svg":"list_alt",
+              "text":"REPORTS"
+           }
+        ],
+        "thirdBlock":[
+           {
+              "svg":"square",
+              "text":"Machina Hi"
+           },
+           {
+              "svg":"up",
+              "text":"Heads Up"
+           },
+           {
+              "svg":"sync",
+              "text":"Stay Around"
+           },
+           {
+              "svg":"graphics2",
+              "text":"Analytics"
+           },
+           {
+              "svg":"graphics",
+              "text":"My Reports",
+              "dropdown":[
+                 
+              ],
+              "svgDropdown":"navigate_next"
+           }
+        ],
+        "fourthBlock":{
+           "text":"Settings"
+        },
+        "fifthBlock":[
+           {
+              "svg":"user",
+              "text":"Manage Users"
+           },
+           {
+              "svg":"cloud",
+              "text":"Cloud Connect"
+           },
+           {
+              "svg":"x",
+              "text":"Api Manager"
+           },
+           {
+              "svg":"question",
+              "text":"Help/Support"
+           }
+        ]
+     },
+     "navbar":{
+        "menu":{
+           "icon":"menu.svg",
+           "deployedIcon":"menu.svg",
+           "method":"setDeploy"
+        },
+        "logo":{
+           "icon":"logo.png"
+        },
+        "firstBlock":[
+           {
+              "icon":"search.svg"
+           },
+           {
+              "method":"setTheme",
+              "context":"theme"
+           },
+           {
+              "icon":"settings.svg"
+           },
+           {
+              "icon":"notifications.svg",
+              "notifications":4
+           }
+        ],
+        "profile":{
+           "name":"Jane Doe",
+           "role":"Admin",
+           "avatar":"avatar.svg",
+           "method":"setDropdown",
+           "dropdown":[
+              [
+                 {
+                    "svg":"user",
+                    "text":"Profile"
+                 }
+              ],
+              [
+                 {
+                    "text":"Teclab",
+                    "subText":" 12829347",
+                    "svg":"navigate_next",
+                    "displayDropdown":false,
+                    "dropdown":[
+                       {
+                          "main":true,
+                          "text":"All Accounts"
+                       },
+                       {
+                          "text":"Teclab: ",
+                          "textContent":"12829347"
+                       },
+                       {
+                          "text":"IPP: ",
+                          "textContent":"12829333"
+                       }
+                    ]
+                 }
+              ],
+              [
+                 {
+                    "svg":"email",
+                    "text":"Inbox"
+                 },
+                 {
+                    "svg":"notifications",
+                    "text":"Notifications"
+                 }
+              ],
+              [
+                 {
+                    "svg":"settings",
+                    "text":"Account Settings"
+                 },
+                 {
+                    "svg":"receipt",
+                    "text":"Billing"
+                 },
+                 {
+                    "svg":"logout",
+                    "text":"Log Out",
+                    "method":"logout"
+                 }
+              ]
+           ]
+        }
+     },
+     "dashboard":[
+        {
+           "title":"My Report",
+           "infoSection":[
+              {
+                 "svg":"copy"
+              },
+              {
+                 "svg":"share"
+              }
+           ],
+           "actions":[
+              {
+                 "svg":"filter",
+                 "component":"Filter",
+                 "ref":"refFilter",
+                 "props":{
+                    "filters":[
+                       {
+                          "name":"A 01 - 2022",
+                          "svg":"remove"
+                       },
+                       {
+                          "name":"Age",
+                          "svg":"remove"
+                       },
+                       {
+                          "name":"Career",
+                          "svg":"remove"
+                       },
+                       {
+                          "name":"All",
+                          "svg":"remove"
+                       }
+                    ]
+                 },
+                 "method":"setFilter",
+                 "aliasClass":"-action-icon"
+              },
+              {
+                 "svg":"dashboard",
+                 "aliasClass":"-action-icon"
+              },
+              {
+                 "svg":"app_registration",
+                 "component":"Dropdown",
+                 "ref":"refOptions",
+                 "props":{
+                    "dropdown":[
+                       [
+                          {
+                             "svg":"donwload",
+                             "text":"Export Report"
+                          },
+                          {
+                             "svg":"share",
+                             "text":"Share report"
+                          },
+                          {
+                             "svg":"schedule",
+                             "text":"Report Settings"
+                          },
+                          {
+                             "svg":"dashboard",
+                             "text":"Edit Report"
+                          },
+                          {
+                             "svg":"pin",
+                             "text":"Pin Report"
+                          }
+                       ],
+                       [
+                          {
+                             "svg":"addchart",
+                             "text":"New report"
+                          },
+                          {
+                             "svg":"description",
+                             "text":"My reports"
+                          }
+                       ]
+                    ],
+                    "classDropdown":"dropdown-dashboard",
+                    "firstWithOutRounded":true
+                 },
+                 "method":"setOptions",
+                 "aliasClass":"-action-icon-dropdown",
+                 "dynamicClass":""
+              }
+           ],
+           "content":[
+              [
+                 {
+                    "style":"width:267px;height: 164px;margin:6px 10px 6px 10px"
+                 },
+                 {
+                    "style":"width:267px;height: 164px;margin:6px 10px 6px 10px"
+                 },
+                 {
+                    "style":"width:267px;height: 164px;margin:6px 10px 6px 10px"
+                 },
+                 {
+                    "style":"width:267px;height: 164px;margin:6px 10px 6px 10px"
+                 }
+              ],
+              [
+                 {
+                    "style":"width:366px;height: 357px;margin:6px 8px 6px 8px"
+                 },
+                 {
+                    "style":"width:366px;height: 357px;margin:6px 8px 6px 8px"
+                 },
+                 {
+                    "style":"width:366px;height: 357px;margin:6px 8px 6px 8px"
+                 }
+              ]
+           ]
+        },
+        {
+           "title":"New Section",
+           "content":[
+              [
+                 {
+                    "style":"width:366px;height: 357px;margin:6px 8px 6px 8px"
+                 },
+                 {
+                    "style":"width:748px;height: 357px;margin:6px 8px 6px 8px"
+                 }
+              ]
+           ]
+        }
+     ]
+     
+}
