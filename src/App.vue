@@ -52,7 +52,7 @@ export default {
   
  .main-app{
 
-  max-height: calc(100vh - 55px);
+  max-height: calc(100vh - 63px);
   overflow-y: scroll;
  }
 
@@ -62,11 +62,11 @@ export default {
 } 
 
 .open{
-  margin-left: 261px;
+  margin-left: 260.4px;
   transition: all 0.1s;
 }
 .closed{
-  margin-left: 69px;
+  margin-left: 68.4px;
   transition: all 0.1s;
 }
 

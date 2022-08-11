@@ -229,7 +229,7 @@ export default {
 .sidebar{
   
   
-  height: calc(100vh - 55px);
+  height: calc(100vh - 63px);
   overflow-y: auto;
   overflow-x: hidden;
   position: absolute;
@@ -240,7 +240,7 @@ export default {
 
 .sidebar::-webkit-scrollbar{
     display: block;
-	  width: 4.5px !important;
+	  width: 2px !important;
     height: 7px !important;
   } 
 .sidebar::-webkit-scrollbar-thumb {
